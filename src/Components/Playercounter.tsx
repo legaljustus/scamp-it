@@ -1,13 +1,17 @@
 import { Button, Grid, Paper, Typography } from "@mui/material";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { SCAMPER } from "../variables";
 
 export const PlayerCounter = () => {
 
     const [userCount, setUserCount] = useState<number>(0);
+    let navigate = useNavigate();
 
     const startGame = (users: number) => {
-        localStorage.setItem("users", JSON.stringify(users))
-        console.log(localStorage.getItem("users"))
+        localStorage.setItem("users", JSON.stringify(users));
+        localStorage.setItem("Question", JSON.stringify(SCAMPER[0]));
+        navigate("/question");
     }
 
     return (
@@ -31,8 +35,10 @@ export const PlayerCounter = () => {
                 variant="contained"
                 color="secondary"
                 sx={{
-                  fontSize: 45,
+                  fontSize: 55,
                   width: "50%",
+                  borderRadius: "100%",
+                  p: 1,
                 }}
                 onClick={() => setUserCount(userCount - 1)}
               >
@@ -44,8 +50,10 @@ export const PlayerCounter = () => {
                 variant="contained"
                 color="secondary"
                 sx={{
-                  fontSize: 45,
+                  fontSize: 55,
                   width: "50%",
+                  borderRadius: "100%",
+                  p: 1,
                 }}
                 onClick={() => setUserCount(userCount + 1)}
               >
@@ -55,11 +63,13 @@ export const PlayerCounter = () => {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-            <Button variant="contained" color="error"
-                onClick={() => startGame(userCount)}
-            >
-                Start
-            </Button>
+          <Button
+            variant="contained"
+            color="error"
+            onClick={() => startGame(userCount)}
+          >
+            Start
+          </Button>
         </Grid>
       </Grid>
     );
