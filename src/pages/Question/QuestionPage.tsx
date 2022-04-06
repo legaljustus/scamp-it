@@ -1,25 +1,52 @@
-import { Grid, Typography } from "@mui/material";
+import CancelIcon from "@mui/icons-material/Cancel";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { Grid, IconButton, Paper, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { questions } from "../../variables";
 
 export const QuestionPage = () => {
     let navigate = useNavigate();
+    const randomQuestion = () => {
+      let options = questions[`${letter.replace(/['"]+/g, "")}`];
+      let question = options[Math.floor(Math.random() * options.length)];
+      return(question)
+    }
 
-    const Question = localStorage.getItem("Question")!;
+    const letter: string = localStorage.getItem("letter")!;
     const Players = parseInt(localStorage.getItem("users")!);
     const [playerCount, setPlayerCount] = useState<number>(1);
+    const [question, setQuestion] = useState<string>(randomQuestion());
+    const [userQuestions, setUserQuestions] = useState<Array<string>>([])
+
+    const AddUserQuestion = (newQuestion: string) => {
+      setUserQuestions((userQuestions) => [
+        ...userQuestions,
+        newQuestion
+      ])
+    }
+
     const NextPlayer = () =>{
         setPlayerCount(playerCount + 1);
+
     }
     const HandleNext = () =>{
         if(playerCount === Players){
-            navigate("/timer")
+            console.log(userQuestions);
+            //navigate("/timer");
         }
         else{
             NextPlayer();
+            AddUserQuestion(question)
+            NextQuestion();
         }
     }
 
+    const NextQuestion = () =>{
+      let question = randomQuestion();
+      setQuestion(question)
+    }
+    
   return (
     <React.Fragment>
       <Grid
@@ -32,13 +59,44 @@ export const QuestionPage = () => {
       >
         <Grid item xs={12}>
           <Typography variant="h1" textAlign="center">
-            {Question.replace(/['"]+/g, "")}
+            {letter}
           </Typography>
         </Grid>
         <Grid item xs={12}>
-            <Typography variant='h3' textAlign="center">
-                Player {playerCount}
-            </Typography>
+          <Typography variant="h3" textAlign="center">
+            Player {playerCount}
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper
+            sx={{
+              p: 1,
+            }}
+          >
+            <Typography variant="h5">{question}</Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container my={4}>
+            <Grid item xs={6} display={"flex"} justifyContent={"center"}>
+              <IconButton onClick={() => NextQuestion()}>
+                <CancelIcon
+                  sx={{
+                    fontSize: 100,
+                  }}
+                />
+              </IconButton>
+            </Grid>
+            <Grid item xs={6} display={"flex"} justifyContent={"center"}>
+              <IconButton onClick={() => HandleNext()}>
+                <CheckCircleIcon
+                  sx={{
+                    fontSize: 100,
+                  }}
+                />
+              </IconButton>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </React.Fragment>

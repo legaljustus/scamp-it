@@ -10,7 +10,7 @@ export const PlayerCounter = () => {
 
     const startGame = (users: number) => {
         localStorage.setItem("users", JSON.stringify(users));
-        localStorage.setItem("Question", JSON.stringify(SCAMPER[0]));
+        localStorage.setItem("letter", JSON.stringify(SCAMPER[0]));
         navigate("/question");
     }
 
