@@ -41,7 +41,6 @@ export const PitchPage = () => {
 
     const handleNextQuestions = () => {
         let qIndex = SCAMPER.indexOf(currentLetter.replaceAll('"', ""));
-        console.log(qIndex)
         if(qIndex < 6){
         localStorage.setItem("letter", JSON.stringify(SCAMPER[qIndex + 1].toString()));
         navigate("/question");

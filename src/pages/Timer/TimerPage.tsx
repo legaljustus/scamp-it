@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, List, ListItem, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { PrototypingTimer } from "./prototypingTimer";
@@ -27,20 +27,22 @@ export const TimerPage = () => {
             <PrototypingTimer />
           </Grid>
           <Grid item xs={12}>
-            <Button variant="contained" color="secondary"
-              onClick={()=> navigate("/pitch")}
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => navigate("/pitch")}
             >
               Ready to pitch?
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <Typography>Player questions:</Typography>
             <Typography>
-              <ol>
+              Player questions:
+              <List>
                 {userQuestions.map((txt: string) => (
-                  <li>{txt}</li>
+                  <ListItem>{txt}</ListItem>
                 ))}
-              </ol>
+              </List>
             </Typography>
           </Grid>
         </Grid>

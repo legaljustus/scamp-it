@@ -7,45 +7,46 @@ import { questions } from "../../variables";
 
 export const QuestionPage = () => {
     let navigate = useNavigate();
+
+       const AddUserQuestion = (newQuestion: string) => {
+         userQuestions.push(newQuestion);
+         setUserQuestions(userQuestions);
+       };
+
+       const NextPlayer = () => {
+         setPlayerCount(playerCount + 1);
+       };
+       const HandleNext = () => {
+         if (playerCount === Players) {
+           AddUserQuestion(question);
+           localStorage.setItem("userQuestions", JSON.stringify(userQuestions));
+           navigate("/timer");
+         } else {
+           NextPlayer();
+           AddUserQuestion(question);
+           NextQuestion();
+         }
+       };
+
+       const NextQuestion = () => {
+         let question = randomQuestion();
+         setQuestion(question);
+       };
+    
+    const Players = parseInt(localStorage.getItem("users")!);
+    const [playerCount, setPlayerCount] = useState<number>(1);
+
+    const letter: string = localStorage.getItem("letter")!;
     const randomQuestion = () => {
       let options = questions[`${letter.replace(/['"]+/g, "")}`];
       let question = options[Math.floor(Math.random() * options.length)];
       return(question)
     }
 
-    const letter: string = localStorage.getItem("letter")!;
-    const Players = parseInt(localStorage.getItem("users")!);
-    const [playerCount, setPlayerCount] = useState<number>(1);
+
     const [question, setQuestion] = useState<string>(randomQuestion());
     const [userQuestions, setUserQuestions] = useState<Array<string>>([])
 
-    const AddUserQuestion = (newQuestion: string) => {
-      setUserQuestions((userQuestions) => [
-        ...userQuestions,
-        newQuestion
-      ])
-    }
-
-    const NextPlayer = () =>{
-        setPlayerCount(playerCount + 1);
-
-    }
-    const HandleNext = () =>{
-        if(playerCount === Players){
-            localStorage.setItem("userQuestions", JSON.stringify(userQuestions));
-            navigate("/timer");
-        }
-        else{
-            NextPlayer();
-            AddUserQuestion(question)
-            NextQuestion();
-        }
-    }
-
-    const NextQuestion = () =>{
-      let question = randomQuestion();
-      setQuestion(question)
-    }
     
   return (
     <React.Fragment>
