@@ -1,11 +1,11 @@
 export const SCAMPER = [
-    'Substitute',
-    'Combine',
-    'Adapt',
-    'Modify',
-    'Put to another use',
-    'Eliminate',
-    'Reverse'
+    "Substitute",
+    "Combine",
+    "Adapt",
+    "Modify",
+    "Put-to-another-use",
+    "Eliminate",
+    "Reverse"
 ]
   
 interface IQuestions {
@@ -112,7 +112,7 @@ export const questions: IQuestions = {
     "What can you remove or make smaller, condensed, lower, shorter or lighter—or streamline, split up or understate?",
     "What can I change in this way or that way so as to achieve such and such a result?",
   ],
-  "Put to other use": [
+  "Put-to-another-use": [
     "In what ways can the concept be used other than its original intended use?",
     "Who else might be able/interested to use the concept ?",
     "What other markets/niches can the concept be used in?",

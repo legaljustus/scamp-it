@@ -32,8 +32,8 @@ export const QuestionPage = () => {
     }
     const HandleNext = () =>{
         if(playerCount === Players){
-            console.log(userQuestions);
-            //navigate("/timer");
+            localStorage.setItem("userQuestions", JSON.stringify(userQuestions));
+            navigate("/timer");
         }
         else{
             NextPlayer();
