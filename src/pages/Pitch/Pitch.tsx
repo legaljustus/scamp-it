@@ -9,8 +9,6 @@ export const PitchPage = () => {
     let navigate = useNavigate();
 
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
 
     const DoneModal = () => {
 
