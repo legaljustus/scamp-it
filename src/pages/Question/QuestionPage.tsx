@@ -1,7 +1,7 @@
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { Grid, IconButton, Paper, Typography } from "@mui/material";
-import React, { useState } from "react";
+import { Grid, IconButton, LinearProgress, Paper, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { questions } from "../../variables";
 
@@ -25,6 +25,7 @@ export const QuestionPage = () => {
            NextPlayer();
            AddUserQuestion(question);
            NextQuestion();
+           setTimeLeft(20);
          }
        };
 
@@ -43,10 +44,38 @@ export const QuestionPage = () => {
       return(question)
     }
 
-
+    const [timeLeft, setTimeLeft] = useState(20);
     const [question, setQuestion] = useState<string>(randomQuestion());
     const [userQuestions, setUserQuestions] = useState<Array<string>>([])
 
+
+    const Timer = () => {
+      // initialize timeLeft with the seconds prop
+
+
+      useEffect(() => {
+        // exit early when we reach 0
+        if (!timeLeft) return;
+
+        // save intervalId to clear the interval when the
+        // component re-renders
+        const intervalId = setInterval(() => {
+          setTimeLeft(timeLeft - 1);
+        }, 1000);
+
+        // clear interval on re-render to avoid memory leaks
+        return () => clearInterval(intervalId);
+        // add timeLeft as a dependency to re-rerun the effect
+        // when we update it
+      });
+
+      return (
+        <React.Fragment>
+          <Typography variant="h3" textAlign="center">{timeLeft}</Typography>
+          <LinearProgress color="secondary" variant="determinate" value={timeLeft * 5} />
+        </React.Fragment>
+      );
+    };
     
   return (
     <React.Fragment>
@@ -69,6 +98,9 @@ export const QuestionPage = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
+          <Timer />
+        </Grid>
+        <Grid item xs={12}>
           <Paper
             sx={{
               p: 1,
@@ -79,24 +111,40 @@ export const QuestionPage = () => {
         </Grid>
         <Grid item xs={12}>
           <Grid container my={4}>
-            <Grid item xs={6} display={"flex"} justifyContent={"center"}>
-              <IconButton onClick={() => NextQuestion()}>
-                <CancelIcon
-                  sx={{
-                    fontSize: 100,
-                  }}
-                />
-              </IconButton>
-            </Grid>
-            <Grid item xs={6} display={"flex"} justifyContent={"center"}>
-              <IconButton onClick={() => HandleNext()}>
-                <CheckCircleIcon
-                  sx={{
-                    fontSize: 100,
-                  }}
-                />
-              </IconButton>
-            </Grid>
+            {timeLeft > 0 ? (
+              <React.Fragment>
+                <Grid item xs={6} display={"flex"} justifyContent={"center"}>
+                  <IconButton onClick={() => NextQuestion()}>
+                    <CancelIcon
+                      sx={{
+                        fontSize: 100,
+                      }}
+                    />
+                  </IconButton>
+                </Grid>
+                <Grid item xs={6} display={"flex"} justifyContent={"center"}>
+                  <IconButton onClick={() => HandleNext()}>
+                    <CheckCircleIcon
+                      sx={{
+                        fontSize: 100,
+                      }}
+                    />
+                  </IconButton>
+                </Grid>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Grid item xs={12} display={"flex"} justifyContent={"center"}>
+                  <IconButton onClick={() => HandleNext()}>
+                    <CheckCircleIcon
+                      sx={{
+                        fontSize: 100,
+                      }}
+                    />
+                  </IconButton>
+                </Grid>
+              </React.Fragment>
+            )}
           </Grid>
         </Grid>
       </Grid>
