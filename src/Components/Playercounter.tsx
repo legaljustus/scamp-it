@@ -1,11 +1,13 @@
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import { Button, Grid, IconButton, Paper, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SCAMPER } from "../variables";
 
 export const PlayerCounter = () => {
 
-    const [userCount, setUserCount] = useState<number>(0);
+    const [userCount, setUserCount] = useState<number>(1);
     let navigate = useNavigate();
 
     const startGame = (users: number) => {
@@ -14,15 +16,29 @@ export const PlayerCounter = () => {
         navigate("/question");
     }
 
+    const minusUser = () => {
+      if(userCount > 1){
+        setUserCount(userCount - 1);
+      }
+    }
+
     return (
       <Grid container>
+        <Grid item xs={12} display={"flex"} justifyContent={"center"} mb={5} mt={-3}>
+          <img src="/Tekengebied 1logo .png" width="175px"></img>
+        </Grid>
         <Grid item xs={12}>
+          <Typography variant="subtitle1" textAlign="center" mb={2}>
+            How many people are participating?
+          </Typography>
           <Paper
+            elevation={1}
             sx={{
-              py: 2,
+              py: 4,
               textAlign: "center",
-              width: "60%",
+              width: "80%",
               mx: "auto",
+              borderRadius: 10,
             }}
           >
             <Typography variant="h1">{userCount}</Typography>
@@ -31,41 +47,36 @@ export const PlayerCounter = () => {
         <Grid item xs={12}>
           <Grid container my={4}>
             <Grid item xs={6} display={"flex"} justifyContent={"center"}>
-              <Button
-                variant="contained"
-                color="secondary"
-                sx={{
-                  fontSize: 55,
-                  width: "50%",
-                  borderRadius: "100%",
-                  p: 1,
-                }}
-                onClick={() => setUserCount(userCount - 1)}
-              >
-                -
-              </Button>
+              <IconButton onClick={() => minusUser()}>
+                <RemoveCircleIcon
+                  sx={{
+                    fontSize: 120,
+                    color: "secondary.main",
+                  }}
+                />
+              </IconButton>
             </Grid>
             <Grid item xs={6} display={"flex"} justifyContent={"center"}>
-              <Button
-                variant="contained"
-                color="secondary"
-                sx={{
-                  fontSize: 55,
-                  width: "50%",
-                  borderRadius: "100%",
-                  p: 1,
-                }}
-                onClick={() => setUserCount(userCount + 1)}
-              >
-                +
-              </Button>
+              <IconButton onClick={() => setUserCount(userCount + 1)}>
+                <AddCircleIcon
+                  sx={{
+                    fontSize: 120,
+                    color: "secondary.main",
+                  }}
+                />
+              </IconButton>
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} justifyContent={"center"} display={"flex"} pt={2}>
           <Button
             variant="contained"
-            color="error"
+            color="secondary"
+            sx={{
+              width: "80%",
+              fontSize: 44,
+              borderRadius: 20,
+            }}
             onClick={() => startGame(userCount)}
           >
             Start
