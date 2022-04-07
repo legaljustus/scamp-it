@@ -18,13 +18,16 @@ const theme: CustomThemeOptions = {
       primary: "#1A3835",
     },
     error: {
-      main: "#377771",
+      main: "#F8333C",
     },
     success: {
       main: "#9BC53D",
     },
   },
   typography: {
+      fontFamily: [
+        'Arial'
+      ].join(','),
       h1:{
           fontSize: 64
       }

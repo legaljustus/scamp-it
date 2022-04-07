@@ -1,5 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
+import { PlayerCounter } from "../../Components/Playercounter";
 
 export const HomePage = () => {
 
@@ -11,10 +12,16 @@ export const HomePage = () => {
                 padding: 2
             }}
         >
-            <Grid item xs>
+            <Grid item xs={12}>
                 <Typography variant="h1" textAlign={"center"} mb={5}>
                     Scamp-IT!
                 </Typography>
+            </Grid>
+            <Grid item xs>
+                <PlayerCounter/>
+            </Grid>
+            <Grid item xs={12}>
+
             </Grid>
         </Grid>
       </React.Fragment>
