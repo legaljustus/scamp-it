@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import { Button, Grid, List, ListItem, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { PrototypingTimer } from "./prototypingTimer";
@@ -26,52 +26,24 @@ export const TimerPage = () => {
           <Grid item xs={12}>
             <PrototypingTimer />
           </Grid>
-          <Grid
-            item
-            xs={12}
-            justifyContent={"center"}
-            display={"flex"}
-            alignItems={"flex-start"}
-          >
+          <Grid item xs={12}>
             <Button
               variant="contained"
               color="secondary"
-              sx={{
-                fontSize: 27,
-                borderRadius: 15,
-                p: 3,
-                px: 5,
-              }}
               onClick={() => navigate("/pitch")}
             >
               Ready to pitch?
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <Paper
-              sx={{
-                p: 2,
-                borderRadius: 10,
-              }}
-            >
-              <Typography textAlign="center" fontWeight="bold">
-                Player questions:
-              </Typography>
-              <Box
-                sx={{
-                  overflow: "scroll",
-                  maxHeight: 200,
-                }}
-              >
-                <Typography>
-                  <ol>
-                    {userQuestions.map((txt: string) => (
-                      <li>{txt}</li>
-                    ))}
-                  </ol>
-                </Typography>
-              </Box>
-            </Paper>
+            <Typography>
+              Player questions:
+              <List>
+                {userQuestions.map((txt: string) => (
+                  <ListItem>{txt}</ListItem>
+                ))}
+              </List>
+            </Typography>
           </Grid>
         </Grid>
       </React.Fragment>

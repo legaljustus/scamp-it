@@ -72,13 +72,7 @@ export const QuestionPage = () => {
       return (
         <React.Fragment>
           <Typography variant="h3" textAlign="center">{timeLeft}</Typography>
-          <LinearProgress color="secondary" variant="determinate" value={timeLeft * 5}
-            sx={{
-              height: 20,
-              borderRadius: 3,
-              mt: 3
-            }}
-          />
+          <LinearProgress color="secondary" variant="determinate" value={timeLeft * 5} />
         </React.Fragment>
       );
     };
@@ -91,7 +85,6 @@ export const QuestionPage = () => {
         sx={{
           backgroundColor: "primary.main",
           padding: 2,
-          pt: 8,
         }}
       >
         <Grid item xs={12}>
@@ -110,17 +103,10 @@ export const QuestionPage = () => {
         <Grid item xs={12}>
           <Paper
             sx={{
-              p: 2,
-              px: 4,
-              minHeight: 150,
-              display: "flex",
-              justifyContent: "center",
-              borderRadius: 10,
+              p: 1,
             }}
           >
-            <Typography variant="h5" sx={{ my: "auto" }}>
-              {question}
-            </Typography>
+            <Typography variant="h5">{question}</Typography>
           </Paper>
         </Grid>
         <Grid item xs={12}>
@@ -132,7 +118,6 @@ export const QuestionPage = () => {
                     <CancelIcon
                       sx={{
                         fontSize: 100,
-                        color: "secondary.main",
                       }}
                     />
                   </IconButton>
@@ -142,7 +127,6 @@ export const QuestionPage = () => {
                     <CheckCircleIcon
                       sx={{
                         fontSize: 100,
-                        color: "secondary.main",
                       }}
                     />
                   </IconButton>
@@ -155,7 +139,6 @@ export const QuestionPage = () => {
                     <CheckCircleIcon
                       sx={{
                         fontSize: 100,
-                        color: "secondary.main",
                       }}
                     />
                   </IconButton>

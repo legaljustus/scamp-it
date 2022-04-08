@@ -6,24 +6,20 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 
 
 export const PrototypingTimer = () => {
-
-    const Players = parseInt(localStorage.getItem("users")!);
     function CircularProgressWithLabel(
         props: 
             CircularProgressProps & { value: number },
         ) {
         return (
-          <Box
-            sx={{ position: "relative", display: "inline-flex", width: "100%" }}
-          >
+          <Box sx={{ position: "relative", display: "inline-flex", width: '100%' }}>
             <CircularProgress
-              variant="determinate"
-              color={"secondary"}
-              value={(props.value / (Players * 30)) * 100}
-              size={275}
-              sx={{
-                mx: "auto",
-              }}
+                variant="determinate"
+                color={"secondary"}
+                value={props.value*1.66667}
+                size={200}
+                sx={{
+                  mx:'auto'
+                }}
             />
             <Box
               sx={{
@@ -37,7 +33,7 @@ export const PrototypingTimer = () => {
                 justifyContent: "center",
               }}
             >
-              <Typography variant="h1" component="div" fontSize={100}>
+              <Typography variant="h1" component="div">
                 {`${Math.round(props.value)}`}
               </Typography>
             </Box>
@@ -73,6 +69,6 @@ export const PrototypingTimer = () => {
 
 
     return (
-        <Timer seconds={30 * Players}/>
+        <Timer seconds={60}/>
     );
 }

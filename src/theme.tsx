@@ -5,14 +5,14 @@ interface CustomThemeOptions extends ThemeOptions {}
 const theme: CustomThemeOptions = {
   palette: {
     primary: {
-      main: "#dffdff",
+      main: "#5c95ff",
     },
     secondary: {
       main: "#377771",
     },
     background: {
       default: "#5c95ff",
-      paper: "#FFFFFF",
+      paper: "#dffdff",
     },
     text: {
       primary: "#1A3835",
@@ -26,12 +26,10 @@ const theme: CustomThemeOptions = {
   },
   typography: {
       fontFamily: [
-        '"Montserrat Alternates"'
+        'Arial'
       ].join(','),
       h1:{
-          fontSize: 64,
-          color: "#377771",
-          fontStyle:"italic"
+          fontSize: 64
       }
   }
 };
