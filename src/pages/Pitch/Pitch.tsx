@@ -17,18 +17,30 @@ export const PitchPage = () => {
             <Paper
               sx={{
                 mx: "auto",
-                mt: "40vh",
+                mt: "30vh",
                 maxWidth: "80%",
                 p: 2,
+                borderRadius: 5,
               }}
             >
-              <Typography variant="h4" fontWeight={"bold"} textAlign="center">
-                Klaar!
+              <Typography variant="h4" fontWeight={"bold"} textAlign="center" mb={2}>
+                SCAMPER complete!
               </Typography>
-              <Button variant="contained" color="secondary"
-                onClick={()=> navigate('/')}
+              <Typography>
+                To improve your idea discuss your ideas with each other.
+              </Typography>
+              <Button
+                variant="contained"
+                color="secondary"
+                sx={{
+                  width: "100%",
+                  borderRadius: 10,
+                  fontSize: 22,
+                  mt: 5,
+                }}
+                onClick={() => navigate("/")}
               >
-                Opnieuw spelen
+                Play agian!
               </Button>
             </Paper>
           </Modal>
@@ -57,6 +69,7 @@ export const PitchPage = () => {
           sx={{
             backgroundColor: "primary.main",
             padding: 2,
+            pt: 5
           }}
         >
           <Grid item xs={12}>
@@ -67,10 +80,22 @@ export const PitchPage = () => {
           <Grid item xs={12}>
             <PrototypingTimer />
           </Grid>
-          <Grid item xs={12}>
+          <Grid
+            item
+            xs={12}
+            justifyContent={"center"}
+            display={"flex"}
+            alignItems={"flex-start"}
+          >
             <Button
               variant="contained"
               color="secondary"
+              sx={{
+                fontSize: 34,
+                borderRadius: 15,
+                p: 3,
+                px: 10,
+              }}
               onClick={() => handleNextQuestions()}
             >
               Next!
