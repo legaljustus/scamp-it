@@ -25,7 +25,7 @@ export const PlayerCounter = () => {
     return (
       <Grid container>
         <Grid item xs={12} display={"flex"} justifyContent={"center"} mb={5} mt={-3}>
-          <img src="/Tekengebied 1logo .png" width="175px"></img>
+          <img src="/Tekengebied 1logo .png" width="175px" alt="scamp-it logo"></img>
         </Grid>
         <Grid item xs={12}>
           <Typography variant="subtitle1" textAlign="center" mb={2}>
