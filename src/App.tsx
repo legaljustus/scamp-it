@@ -5,6 +5,7 @@ import { HomePage } from "./pages/home/homepage";
 import { PitchPage } from "./pages/Pitch/Pitch";
 import { QuestionPage } from "./pages/Question/QuestionPage";
 import { TimerPage } from "./pages/Timer/TimerPage";
+import { WelcomePage } from "./pages/welcome/welcomePage";
 import theme from "./theme";
 
 
@@ -16,6 +17,12 @@ function App() {
         <Routes>
           <Route
             path="/"
+            element={
+              <WelcomePage/>
+            }
+          />
+          <Route
+            path="/home"
             element={
               <HomePage/>
             }
