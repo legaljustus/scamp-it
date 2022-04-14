@@ -95,7 +95,7 @@ export const QuestionPage = () => {
         </Typography>
         <br/>
         <Typography>
-          Each player will have 60 seconds to pick one question to aid their
+          Each player will have 20 seconds to pick one question to aid their
           creative process.
         </Typography>
       </InfoModal>

@@ -14,7 +14,7 @@ export const TimerPage = () => {
       <React.Fragment>
         <InfoModal nextPage="pitch" open={open}>
           <Typography>
-            Every participant will now have 30 seconds to work out their idea
+            Every participant will now have 60 seconds to work out their idea
             fitting the current heuristic and their chosen question.
           </Typography>
           <br />
