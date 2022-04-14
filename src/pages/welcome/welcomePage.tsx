@@ -50,6 +50,10 @@ export const WelcomePage = () => {
             backgroundColor: "primary.main",
             padding: 2,
             pt: 5,
+            display:{
+              xs: 'flex',
+              md: 'none'
+            }
           }}
         >
           <Grid
@@ -63,7 +67,7 @@ export const WelcomePage = () => {
             <img
               src="/Tekengebied 1logo .png"
               width="175px"
-              height="170px"
+              height="165px"
               alt="scamp-it logo"
             ></img>
           </Grid>
@@ -101,6 +105,23 @@ export const WelcomePage = () => {
                 </IconButton>
               </Grid>
             </Grid>
+          </Grid>
+        </Grid>
+        <Grid container
+          sx={{
+            display:{
+              xs: 'none',
+              md: 'flex'
+            },
+            height: '100vh',
+            backgroundColor: 'primary.main',
+            p: 5,
+          }}
+        >
+          <Grid item my="auto">
+          <Typography variant="h1" textAlign="center">
+            Please use SCAMP-IT on a smaller (mobile) device
+          </Typography>
           </Grid>
         </Grid>
       </React.Fragment>
