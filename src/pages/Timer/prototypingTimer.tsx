@@ -5,9 +5,12 @@ import CircularProgress, {
 import React, { FunctionComponent, useEffect, useState } from "react";
 
 
-export const PrototypingTimer = () => {
+export const PrototypingTimer = (props: {
+  time: number;
+}) => {
 
-    const Players = parseInt(localStorage.getItem("users")!);
+    const totaltime = props.time
+
     function CircularProgressWithLabel(
         props: 
             CircularProgressProps & { value: number },
@@ -19,7 +22,7 @@ export const PrototypingTimer = () => {
             <CircularProgress
               variant="determinate"
               color={"secondary"}
-              value={(props.value / (Players * 30)) * 100}
+              value={(props.value / totaltime) * 100}
               size={275}
               sx={{
                 mx: "auto",
@@ -73,6 +76,6 @@ export const PrototypingTimer = () => {
 
 
     return (
-        <Timer seconds={30 * Players}/>
+        <Timer seconds={props.time}/>
     );
 }

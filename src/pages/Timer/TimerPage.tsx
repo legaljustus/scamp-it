@@ -1,15 +1,28 @@
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
-import React from "react";
+import { default as React } from "react";
 import { useNavigate } from "react-router-dom";
+import { InfoModal } from "../../Components/InfoModal";
 import { PrototypingTimer } from "./prototypingTimer";
 
 
 export const TimerPage = () => {
     let navigate = useNavigate();
     const userQuestions = JSON.parse(localStorage.getItem("userQuestions")!);  
+    const open = localStorage.getItem("tutorial") === "true";
 
     return (
       <React.Fragment>
+        <InfoModal nextPage="pitch" open={open}>
+          <Typography>
+            Every participant will now have 30 seconds to work out their idea
+            fitting the current heuristic and their chosen question.
+          </Typography>
+          <br />
+          <Typography>
+            It helps best to grab a piece of paper and create a small drawing or
+            sketch to help explain your idea!
+          </Typography>
+        </InfoModal>
         <Grid
           container
           height={"100vh"}
@@ -24,7 +37,9 @@ export const TimerPage = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <PrototypingTimer />
+            <PrototypingTimer 
+              time={60}
+            />
           </Grid>
           <Grid
             item

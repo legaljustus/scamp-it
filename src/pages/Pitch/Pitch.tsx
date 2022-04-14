@@ -1,4 +1,4 @@
-import { Button, Grid, Modal, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, Modal, Paper, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { SCAMPER } from "../../variables";
@@ -9,6 +9,13 @@ export const PitchPage = () => {
     let navigate = useNavigate();
 
     const [open, setOpen] = React.useState(false);
+    const tutorialOpen = localStorage.getItem("tutorial") === "true";
+    const Players = parseInt(localStorage.getItem("users")!);
+
+    const HandleDone = () => {
+      localStorage.clear();
+      navigate("/home");
+    }
 
     const DoneModal = () => {
 
@@ -38,9 +45,9 @@ export const PitchPage = () => {
                   fontSize: 22,
                   mt: 5,
                 }}
-                onClick={() => navigate("/")}
+                onClick={() => HandleDone()}
               >
-                Play agian!
+                Play again!
               </Button>
             </Paper>
           </Modal>
@@ -60,8 +67,63 @@ export const PitchPage = () => {
         }
     };
 
+    const handleEndTutorial = () => {
+      localStorage.clear();
+      localStorage.setItem("tutorial", JSON.stringify(false));
+      navigate('/home')
+    }
+
     return (
       <React.Fragment>
+        <Modal
+          open={tutorialOpen}
+          sx={{
+            alignItems: "flex-end",
+            display: "flex",
+          }}
+        >
+          <Paper
+            sx={{
+              mx: "auto",
+              maxWidth: "100%",
+              width: "100%",
+              p: 2,
+              borderRadius: 3,
+            }}
+          >
+            <Box p={2}>
+              <Typography>
+                Each participant will now get 30 seconds to pitch and discuss
+                their idea with the other participants.
+              </Typography>
+              <br />
+              <Typography>
+                It is encouraged to ask questions and start the conversation to
+                get the creative juices flowing!
+              </Typography>
+              <br />
+              <Typography>
+                After this all of the steps will be repeated throughout the
+                other 6 heuristics. At the end you will have a substantial
+                collection of possible ideas or improvements to your current
+                idea. Now let's try it yourselves!
+              </Typography>
+            </Box>
+            <Button
+              variant="contained"
+              color="secondary"
+              sx={{
+                width: "100%",
+                borderRadius: 10,
+                fontSize: 22,
+                mt: 5,
+              }}
+              onClick={() => handleEndTutorial()}
+            >
+              Let's go!
+            </Button>
+          </Paper>
+        </Modal>
         <DoneModal />
         <Grid
           container
@@ -69,7 +131,7 @@ export const PitchPage = () => {
           sx={{
             backgroundColor: "primary.main",
             padding: 2,
-            pt: 5
+            pt: 5,
           }}
         >
           <Grid item xs={12}>
@@ -78,7 +140,7 @@ export const PitchPage = () => {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <PrototypingTimer />
+            <PrototypingTimer time={30 * Players} />
           </Grid>
           <Grid
             item

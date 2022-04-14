@@ -3,10 +3,12 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Grid, IconButton, LinearProgress, Paper, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { InfoModal } from "../../Components/InfoModal";
 import { questions } from "../../variables";
 
 export const QuestionPage = () => {
     let navigate = useNavigate();
+    const open = localStorage.getItem("tutorial") === "true";
 
        const AddUserQuestion = (newQuestion: string) => {
          userQuestions.push(newQuestion);
@@ -85,6 +87,19 @@ export const QuestionPage = () => {
     
   return (
     <React.Fragment>
+      <InfoModal nextPage="timer" open={open}>
+        <Typography>
+          The seven mentioned heuristics can be a a little obscure at times.
+          Some clarifying questions have been created which can aid you to
+          understand a particular heuristic better, or stimulate you creatively.
+        </Typography>
+        <br/>
+        <Typography>
+          Each player will have 60 seconds to pick one question to aid their
+          creative process.
+        </Typography>
+      </InfoModal>
+
       <Grid
         container
         height={"100vh"}
